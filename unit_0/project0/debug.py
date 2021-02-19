@@ -1,6 +1,13 @@
-def get_sum_metrics(predictions, metrics=[]):
+from functools import partial
+
+def add_i(x, i):
+    return x + i
+
+def get_sum_metrics(predictions, metrics=None):
+    if metrics is None:
+        metrics = []
     for i in range(3):
-        metrics.append(lambda x: x + i)
+        metrics.append(partial(add_i, i))
 
     sum_metrics = 0
     for metric in metrics:
